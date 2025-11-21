@@ -2,16 +2,18 @@ package com.isetr.e_commerce.service;
 
 import com.isetr.e_commerce.entity.Category;
 import com.isetr.e_commerce.repository.CategoryRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service  // <- This makes it a Spring bean
-@RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepository categoryRepository;
+
+    public CategoryServiceImpl(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
+    }
 
     @Override
     public Category findById(Long id) {

@@ -2,17 +2,19 @@ package com.isetr.e_commerce.controller;
 
 import com.isetr.e_commerce.entity.Category;
 import com.isetr.e_commerce.service.CategoryService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/category")
-@RequiredArgsConstructor
 public class CategoryController {
 
     private final CategoryService categoryService;
+
+    public CategoryController(CategoryService categoryService) {
+        this.categoryService = categoryService;
+    }
 
     // Create a new category
     @PostMapping

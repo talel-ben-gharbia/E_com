@@ -15,6 +15,25 @@ public class Product {
     private double price;
     private int quantity;
 
+
+    public float getSold() {
+        return sold;
+    }
+
+    public void setSold(float sold) {
+        this.sold = sold;
+    }
+
+    public Product(Long id) {
+        this.id = id;
+    }
+
+    private float sold;
+
+
+
+    private String imgUrl;
+
     @ManyToOne
     @JoinColumn(name = "category_id") // foreign key in products table
     private Category category;
@@ -23,11 +42,13 @@ public class Product {
     public Product() {
     }
 
-    public Product(String name, String description, double price, int quantity, Category category) {
+    public Product(String name, String description, double price, int quantity,float sold,String imgUrl, Category category) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.quantity = quantity;
+        this.sold = sold;
+        this.imgUrl = imgUrl;
         this.category = category;
     }
 
@@ -78,5 +99,12 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }
