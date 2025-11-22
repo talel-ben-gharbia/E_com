@@ -38,6 +38,10 @@ public class Product {
     @JoinColumn(name = "category_id") // foreign key in products table
     private Category category;
 
+    @ManyToOne
+    @JoinColumn(name = "under_category_id")
+    private UnderCategory underCategory;
+
     // Constructors
     public Product() {
     }
@@ -99,6 +103,13 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+    public UnderCategory getUnderCategory() {
+        return underCategory;
+    }
+
+    public void setUnderCategory(UnderCategory underCategory) {
+        this.underCategory = underCategory;
     }
     public String getImgUrl() {
         return imgUrl;

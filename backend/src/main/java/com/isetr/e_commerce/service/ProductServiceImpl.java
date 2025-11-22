@@ -3,6 +3,7 @@ package com.isetr.e_commerce.service;
 import com.isetr.e_commerce.entity.Product;
 import com.isetr.e_commerce.repository.ProductRepository;
 import com.isetr.e_commerce.repository.CategoryRepository;
+import com.isetr.e_commerce.repository.UnderCategoryRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.nio.file.Files;
@@ -10,6 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import com.isetr.e_commerce.entity.Category;
+import com.isetr.e_commerce.entity.UnderCategory;
 
 
 import java.util.List;
@@ -19,11 +21,14 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
+    private final UnderCategoryRepository underCategoryRepository;
 
     public ProductServiceImpl(ProductRepository productRepository,
-                              CategoryRepository categoryRepository) {
+                              CategoryRepository categoryRepository,
+                              UnderCategoryRepository underCategoryRepository) {
         this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
+        this.underCategoryRepository = underCategoryRepository;
     }
 
     @Override
@@ -45,6 +50,7 @@ public class ProductServiceImpl implements ProductService {
         existing.setPrice(product.getPrice());
         existing.setQuantity(product.getQuantity());
         existing.setCategory(product.getCategory());
+        existing.setUnderCategory(product.getUnderCategory());
         return productRepository.save(existing);
     }
 
@@ -69,10 +75,16 @@ public class ProductServiceImpl implements ProductService {
         String imgUrl = "http://localhost:8080/uploads/" + fileName;
         product.setImgUrl(imgUrl);
 
-        // If product has a category object with only id → load full category
-        if (product.getCategory() != null && product.getCategory().getId() != null) {
+        // Resolve under-category first (if provided) and keep category in sync
+        if (product.getUnderCategory() != null && product.getUnderCategory().getId() != null) {
+            UnderCategory underCategory = underCategoryRepository.findById(product.getUnderCategory().getId())
+                .orElseThrow(() -> new RuntimeException("UnderCategory not found"));
+            product.setUnderCategory(underCategory);
+            // ensure product.category points to the parent category
+            product.setCategory(underCategory.getCategory());
+        } else if (product.getCategory() != null && product.getCategory().getId() != null) {
             Category category = categoryRepository.findById(product.getCategory().getId())
-                    .orElseThrow(() -> new RuntimeException("Category not found"));
+                .orElseThrow(() -> new RuntimeException("Category not found"));
             product.setCategory(category);
         }
 
