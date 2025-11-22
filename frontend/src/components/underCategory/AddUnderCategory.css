@@ -1,0 +1,40 @@
+.add-undercategory {
+  max-width: 520px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+.add-undercategory h2 {
+  margin: 0 0 16px 0;
+}
+.add-undercategory .form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.add-undercategory label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: #333;
+}
+.add-undercategory input {
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-top: 6px;
+}
+.add-undercategory button {
+  padding: 10px 14px;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.add-undercategory button[disabled] {
+  opacity: 0.6;
+  cursor: default;
+}
