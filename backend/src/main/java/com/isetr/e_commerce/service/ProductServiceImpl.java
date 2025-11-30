@@ -60,6 +60,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> search(String q) {
+        if (q == null || q.trim().isEmpty()) return getAll();
+        String term = q.trim();
+        return productRepository.findByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(term, term);
+    }
+
+    @Override
     public Product createWithImage(Product product, MultipartFile image) {
 
     try {

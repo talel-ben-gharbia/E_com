@@ -8,6 +8,7 @@ import java.util.List;
 public interface ProductService {
     Product create(Product product);
     Product createWithImage(Product product, MultipartFile image);
+    List<Product> search(String q);
     Product getOne(Long id);
     Product update(Product product ,Long id);
     List<Product> getAll();

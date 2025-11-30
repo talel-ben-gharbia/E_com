@@ -21,6 +21,7 @@ public class ProductController {
         this.productService = productService;
     }
 
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public Product create(@RequestBody Product product) {
         return productService.create(product);
@@ -38,5 +39,15 @@ public class ProductController {
     @GetMapping
     public List<Product> getAll() {
         return productService.getAll();
+    }
+
+    @GetMapping("/search")
+    public List<Product> search(@RequestParam(value = "q", required = false) String q) {
+        return productService.search(q);
+    }
+
+    @GetMapping("/{id}")
+    public Product getOne(@PathVariable Long id) {
+        return productService.getOne(id);
     }
 }

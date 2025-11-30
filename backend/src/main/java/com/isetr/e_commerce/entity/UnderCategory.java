@@ -16,9 +16,7 @@ public class UnderCategory {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    public UnderCategory() {
-    }
-
+    
     public UnderCategory(String name, Category category) {
         this.name = name;
         this.category = category;
