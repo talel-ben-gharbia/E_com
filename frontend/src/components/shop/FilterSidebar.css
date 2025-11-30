@@ -1,0 +1,85 @@
+.filter-sidebar {
+  width: 260px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  height: fit-content;
+}
+.filter-sidebar h3 {
+  margin: 0 0 12px 0;
+}
+.filter-block {
+  margin-bottom: 16px;
+}
+.category-list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0;
+}
+.category-list li {
+  padding: 8px 6px;
+  cursor: pointer;
+  color: #333;
+  border-radius: 6px;
+}
+.category-list li:hover {
+  background: #f5f5f5;
+}
+.price-range .inputs {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.price-range input {
+  width: 90px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #e6e6e6;
+}
+.colors {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.color-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+}
+.color-dot.active {
+  outline: 3px solid rgba(0, 0, 0, 0.08);
+}
+.sizes {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.size-chip {
+  padding: 8px 10px;
+  border-radius: 18px;
+  border: 1px solid #eee;
+  background: #fafafa;
+  cursor: pointer;
+}
+.apply-row {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+.apply-btn {
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: none;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .filter-sidebar {
+    width: 100%;
+  }
+}
